@@ -39,6 +39,7 @@ export const userSlice = createSlice({
   reducers: {
     initAction: (state) => {
       state.loading = true;
+      state.error = "";
     },
     loginSuccess: (state, action) => {
       state.user = action.payload.user;
@@ -66,6 +67,13 @@ export const userSlice = createSlice({
 
       sessionStorage.removeItem("auth");
     },
+    sessionTimeout: (state) => {
+      state.user = undefined;
+      state.loading = false;
+      state.error = "Session timed out";
+
+      sessionStorage.removeItem("auth");
+    },
   },
 });
 
@@ -77,6 +85,7 @@ export const {
   editProfileSuccess,
   setError,
   clearUser,
+  sessionTimeout,
 } = userSlice.actions;
 
 export default userSlice.reducer;

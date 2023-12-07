@@ -14,10 +14,10 @@ class UserService {
           }
         }
 
-        reject(new Error("Invalid email or password"));
+        reject("Invalid email or password");
       } catch (err: any) {
         console.error("Login failed: ", err);
-        reject(err);
+        reject(JSON.stringify(err));
       }
     });
   }

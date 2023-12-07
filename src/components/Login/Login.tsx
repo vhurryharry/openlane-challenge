@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <div className="page-wrapper">
       <h1>Please Log In</h1>
-      {error && <div>Email address or password not valid</div>}
+      {error && <div>{error}</div>}
       <form onSubmit={handleSubmit}>
         <label>
           <p>Email</p>

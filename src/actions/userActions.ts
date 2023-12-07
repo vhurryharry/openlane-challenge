@@ -65,6 +65,8 @@ export const initUser = () => {
     const userString = sessionStorage.getItem("auth");
     const user = userString ? JSON.parse(userString) : null;
 
-    return dispatch(loginSuccess({ user }));
+    if (user) {
+      return dispatch(loginSuccess({ user }));
+    }
   };
 };
