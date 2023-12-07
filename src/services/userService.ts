@@ -22,12 +22,26 @@ class UserService {
     });
   }
 
-  saveProfile(user: UserInfo): Promise<UserProfile> {
+  createProfile(user: UserInfo): Promise<UserProfile> {
     return new Promise<UserProfile>((resolve, reject) => {
       try {
         if (localStorage.getItem(user.email)) {
           reject("Email is already in use");
         }
+
+        localStorage.setItem(user.email, JSON.stringify(user));
+        resolve(user as UserProfile);
+      } catch (err: any) {
+        console.error("Save Profile failed: ", err);
+        reject(err);
+      }
+    });
+  }
+
+  editProfile(prevUser: UserInfo, user: UserInfo): Promise<UserProfile> {
+    return new Promise<UserProfile>((resolve, reject) => {
+      try {
+        localStorage.removeItem(prevUser.email);
 
         localStorage.setItem(user.email, JSON.stringify(user));
         resolve(user as UserProfile);

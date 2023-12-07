@@ -32,18 +32,18 @@ export const createProfile = (user: UserInfo) => {
     dispatch(initAction());
 
     return userService
-      .saveProfile(user)
+      .createProfile(user)
       .then(() => dispatch(createProfileSuccess()))
       .catch((error) => dispatch(setError({ error })));
   };
 };
 
-export const editProfile = (user: UserInfo) => {
+export const editProfile = (prevUser: UserInfo, user: UserInfo) => {
   return (dispatch: AppDispatch) => {
     dispatch(initAction());
 
     return userService
-      .saveProfile(user)
+      .editProfile(prevUser, user)
       .then((user) => dispatch(editProfileSuccess({ user })))
       .catch((error) => dispatch(setError({ error })));
   };

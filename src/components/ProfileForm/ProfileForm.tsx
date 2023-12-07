@@ -23,9 +23,13 @@ const ProfileForm = ({ onSubmit, onCancel, user }: IProfileForm) => {
     user?.favoriteColor || ""
   );
 
+  const [validationError, setValidationError] = useState<string>();
+
   const error = useSelector(getError);
 
   const handleSubmit = (e: React.FormEvent) => {
+    setValidationError("");
+
     const user: UserInfo = {
       email,
       password,
@@ -39,6 +43,9 @@ const ProfileForm = ({ onSubmit, onCancel, user }: IProfileForm) => {
       onSubmit(user).then((success) => {
         if (!success) e.preventDefault();
       });
+    } else {
+      setValidationError(validation);
+      e.preventDefault();
     }
   };
 
@@ -94,15 +101,19 @@ const ProfileForm = ({ onSubmit, onCancel, user }: IProfileForm) => {
           required
           onChange={(e) => setFavoriteColor(e.target.value)}
         >
-          {Object.entries(Colors).map(([key, value]) => (
-            <option key={"color-" + value} value={value}>
-              {key}
-            </option>
-          ))}
+          {[["Please select", ""], ...Object.entries(Colors)].map(
+            ([key, value]) => (
+              <option key={"color-" + value} value={value}>
+                {key}
+              </option>
+            )
+          )}
         </select>
       </label>
 
-      {error && <p>{error}</p>}
+      {(validationError || error) && (
+        <p className="error-text">{validationError || error}</p>
+      )}
 
       <div>
         <button type="submit" disabled={false}>

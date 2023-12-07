@@ -14,8 +14,8 @@ const EditProfile = () => {
 
   const navigate = useNavigate();
 
-  const onSubmitProfile = (user: UserInfo) => {
-    return dispatch(editProfile(user)).then((profile) => {
+  const onSubmitProfile = (newUser: UserInfo) => {
+    return dispatch(editProfile(user!, newUser)).then((profile) => {
       if (profile.type === "user/editProfileSuccess") {
         navigate("/");
         return true;
@@ -30,7 +30,7 @@ const EditProfile = () => {
 
   return (
     <div className="page-wrapper">
-      <h1>Edit {user?.name} Profile</h1>
+      <h1 style={{ color: user?.favoriteColor }}>Edit {user?.name} Profile</h1>
       <ProfileForm user={user} onSubmit={onSubmitProfile} onCancel={onCancel} />
     </div>
   );

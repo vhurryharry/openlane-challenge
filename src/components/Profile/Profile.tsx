@@ -29,12 +29,16 @@ const Profile = () => {
     navigate("/login");
   };
 
+  const formatPhoneNumber = (value: string) => {
+    return `+${value}`;
+  };
+
   return (
     <div className="page-wrapper">
       <h1 style={{ color: user?.favoriteColor }}>{`${user?.name} Profile`}</h1>
       <p>Email: {user?.email}</p>
       <p>Name: {user?.name}</p>
-      <p>Phone Number: {user?.phoneNumber}</p>
+      <p>Phone Number: {formatPhoneNumber(user?.phoneNumber!)}</p>
       <p>Favorite Color: {user?.favoriteColor}</p>
 
       <div>
