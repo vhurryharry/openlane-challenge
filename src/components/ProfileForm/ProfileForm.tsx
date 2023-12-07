@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PhoneInput from "react-phone-number-input/input";
 
 import "./ProfileForm.css";
 import { Colors, UserInfo } from "../../reducers/userReducer";
@@ -16,9 +17,7 @@ const ProfileForm = ({ onSubmit, onCancel, user }: IProfileForm) => {
   const [email, setEmail] = useState<string>(user?.email || "");
   const [password, setPassword] = useState<string>(user?.password || "");
   const [name, setName] = useState<string>(user?.name || "");
-  const [phoneNumber, setPhoneNumber] = useState<string>(
-    user?.phoneNumber || ""
-  );
+  const [phoneNumber, setPhoneNumber] = useState<any>(user?.phoneNumber || "");
   const [favoriteColor, setFavoriteColor] = useState<string>(
     user?.favoriteColor || ""
   );
@@ -87,10 +86,10 @@ const ProfileForm = ({ onSubmit, onCancel, user }: IProfileForm) => {
 
       <label>
         <p>Phone Number</p>
-        <input
-          type="text"
+        <PhoneInput
+          international
           value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          onChange={setPhoneNumber}
         />
       </label>
 

@@ -5,7 +5,7 @@ export const validateUser = (user: UserInfo): string | null => {
   const passwordRegex =
     /^(?=(.*[A-Z]){2})(?=(.*\d){2})(?=(.*[^A-Za-z0-9]){1})[A-Za-z0-9!@#$%^&*()-_+=<>?.,;:]{10,32}$/;
   const nameRegex = /^[A-Za-z]{3,}$/;
-  const phoneNumberRegex = /\+?\d{7,20}$/;
+  const phoneNumberRegex = /^\+\d{1,15}$/;
 
   if (!emailRegex.test(user.email)) {
     return "Invalid email address";
@@ -19,7 +19,7 @@ export const validateUser = (user: UserInfo): string | null => {
     return "Name must include at least 3 characters";
   }
 
-  if (user.phoneNumber && !phoneNumberRegex.test(user.phoneNumber)) {
+  if (user.phoneNumber && !phoneNumberRegex.test(user.phoneNumber!)) {
     return "Invalid Phone Number format";
   }
 
