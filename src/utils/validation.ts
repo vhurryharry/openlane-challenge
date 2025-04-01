@@ -15,9 +15,9 @@ export const validateUser = (user: UserInfo): string | null => {
     return "Password should be between 10 - 32 letters, numbers, special characters (not a letter or number). There must be at least 2 uppercase, 2 numbers and 1 special character.";
   }
 
-  if (!nameRegex.test(user.name)) {
-    return "Name must include at least 3 characters";
-  }
+  // if (!nameRegex.test(user.name)) {
+  //   return "Name must include at least 3 characters";
+  // }
 
   if (user.phoneNumber && !phoneNumberRegex.test(user.phoneNumber!)) {
     return "Invalid Phone Number format";

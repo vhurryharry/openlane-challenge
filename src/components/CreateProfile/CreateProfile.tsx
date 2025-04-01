@@ -15,6 +15,7 @@ const CreateProfile = () => {
   const onSubmitProfile = (user: UserInfo) => {
     return dispatch(createProfile(user)).then((profile) => {
       if (profile.type === "user/createProfileSuccess") {
+        navigate("/login");
         return true;
       }
       return false;
