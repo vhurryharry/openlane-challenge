@@ -55,7 +55,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <div>
+        <div className="login-buttons">
           <button type="submit">Login</button>
           <button type="button" onClick={onCreateProfile}>
             Create Profile
