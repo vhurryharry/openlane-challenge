@@ -10,7 +10,7 @@ const sessionTimeoutMiddleware: Middleware<{}> =
     if (action.type === "user/loginSuccess") {
       setTimeout(() => {
         dispatch(sessionTimeout());
-      }, 60000);
+      }, 600000);
     }
 
     return next(action);

@@ -12,6 +12,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 import Login from "./components/Login/Login";
 
 import "./App.css";
+import Stories from "./components/Stories";
 
 type PrivateRouteProps = {
   element: ReactElement;
@@ -39,6 +40,7 @@ const App = () => {
     <div className="wrapper">
       <BrowserRouter>
         <Routes>
+          <Route path="/stories" element={<Stories />} />
           <Route path="/login" element={<Login />} />
           <Route path="/create" element={<CreateProfile />} />
           <Route path="/" element={<PrivateRoute element={<Profile />} />} />
